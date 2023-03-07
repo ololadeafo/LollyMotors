@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sales_rest.apps.SalesRestConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:3100"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
