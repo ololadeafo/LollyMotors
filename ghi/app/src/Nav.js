@@ -10,6 +10,13 @@ function Nav() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Automobile</a>
+            <ul className="dropdown-menu">
+              <li><NavLink className="dropdown-item" to="/automobiles" role="button">Automobile List</NavLink></li>
+              <li><NavLink className="dropdown-item" to="/automobiles/new" role="button">Add Automobile</NavLink></li>
+            </ul>
+          </li>
           </ul>
         </div>
       </div>
