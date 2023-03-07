@@ -24,6 +24,13 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="vehicles/create" role="button">Add a Vehicle Model</NavLink></li>
               </ul>
             </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Automobile</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/automobiles" role="button">Automobile List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/automobiles/new" role="button">Add Automobile</NavLink></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
