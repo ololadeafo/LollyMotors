@@ -5,6 +5,8 @@ import ManufacturerForm from './ManufacturerForm';
 import ManufacturerList from './ManufacturerList';
 import VehicleForm from './VehicleForm';
 import VehicleList from './VehicleList';
+import AutoMobileForm from './automobileForm';
+import AutomobileList from './automobileList';
 
 function App(props) {
   return (
@@ -20,6 +22,10 @@ function App(props) {
           <Route path="vehicles">
             <Route index element={<VehicleList />} />
             <Route path="create" element={<VehicleForm />} />
+            </Route>
+          <Route path="automobiles">
+            <Route path= "" element={<AutomobileList automobiles={props.automobiles}/>}/>
+            <Route path= "new" element={<AutoMobileForm />} />
           </Route>
         </Routes>
       </div>
