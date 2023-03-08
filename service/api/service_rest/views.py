@@ -3,8 +3,9 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
 
-from .models import AutomobileVO, Technician, Appointment
 from common.json import ModelEncoder
+from .models import AutomobileVO, Technician, Appointment
+
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
@@ -58,7 +59,7 @@ def api_list_technicians(request):
             )
         except:
             return JsonResponse(
-                {"message": "Use another technician"}
+                {"message": "Select a different technician"}
             )
 
 @require_http_methods(["GET", "POST"])
