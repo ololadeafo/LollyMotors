@@ -2,50 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from common.json import ModelEncoder
 from .models import SalesPerson, PotentialCustomer, AutomobileVO, SaleRecord
-
-# Create your views here.
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = [
-        "vin",
-        "year",
-        "model",
-        "import_href"
-    ]
-
-class SalesPersonEncoder(ModelEncoder):
-    model = SalesPerson
-    properties = [
-        "name",
-        "employee_number",
-    ]
-
-class CustomerEncoder(ModelEncoder):
-    model = PotentialCustomer
-    properties = [
-        "name",
-        "address",
-        "phone_number",
-    ]
-
-class SaleRecordEncoder(ModelEncoder):
-    model = SaleRecord
-    properties = [
-        "automobile",
-        "salesperson",
-        "customer",
-        "price",
-    ]
-    def get_extra_data(self, o):
-        return {
-            "automobile": o.automobile.vin,
-            "salesperson": o.salesperson.employee_number,
-            "customer": o.customer.phone_number,
-            }
-
-
+from .encoders import SalesPersonEncoder, CustomerEncoder, SaleRecordEncoder
 
 
 @require_http_methods(["GET", "POST"])
@@ -95,27 +53,30 @@ def api_salerecord_list(request):
     else:
         content = json.loads(request.body)
         try:
-            automobile = AutomobileVO.objects.get(vin=content["automobile"])
+            vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=vin)
             content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid automotive vin"},
-                status=400,
-            )
+                    {"message": "Invalid automobile VIN"},
+                    status=400
+                )
         try:
-            salesperson = SalesPerson.objects.get(employee_number=content["salesperson"])
+            name = content["salesperson"]
+            salesperson = SalesPerson.objects.get(name=name)
             content["salesperson"] = salesperson
         except SalesPerson.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid employee number"},
+                {"message": "Invalid employee name"},
                 status=400,
             )
         try:
-            customer = PotentialCustomer.objects.get(phone_number=content["customer"])
+            name = content["customer"]
+            customer = PotentialCustomer.objects.get(name=name)
             content["customer"] = customer
         except PotentialCustomer.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid customer phone number"},
+                {"message": "Invalid customer name"},
                 status=400
             )
         sale = SaleRecord.objects.create(**content)

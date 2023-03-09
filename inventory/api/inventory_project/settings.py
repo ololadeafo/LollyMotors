@@ -56,10 +56,16 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
+    "http://inventory-api:8100",
+    "http://inventory-api:8080",
+    "http://inventory-api:8090"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://inventory-api:8100",
+    "http://inventory-api:8080",
+    "http://inventory-api:8090"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
