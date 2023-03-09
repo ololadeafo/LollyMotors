@@ -26,18 +26,17 @@ function AutoMobileForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const locationUrl = 'http://localhost:8100/api/automobiles/';
+        const automobileUrl = 'http://localhost:8100/api/automobiles/';
 
         const fetchConfig = {
-            method: "post",
+            method: 'post',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type' : 'application/json',
             },
         };
 
-        const response = await fetch (locationUrl, fetchConfig)
-
+        const response = await fetch(automobileUrl, fetchConfig);
         if (response.ok) {
             setFormData({
                 color: '',
@@ -53,7 +52,7 @@ function AutoMobileForm() {
         const inputName = e.target.name;
         setFormData({
             ...formData,
-            [inputName]: value
+            [inputName]: value,
         });
     }
 
@@ -62,9 +61,9 @@ function AutoMobileForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Add a new automobile to inventory</h1>
-                    <form onSubmit={handleSubmit} id="create-automobile-form">
+                    <form onSubmit={handleSubmit} id="create-automobiles-form">
                         <div className="form-floating mb-3">
-                            <input onChange={handleFormChange} value ={formData.color} placeeholder="Color" required type="text" name="color" className="form-control" />
+                            <input onChange={handleFormChange} value ={formData.color} placeholder="Color" required type="text" name="color" className="form-control" />
                             <label htmlFor="color">Color</label>
                         </div>
                         <div className="form-floating mb-3">
