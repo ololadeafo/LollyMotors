@@ -13,15 +13,15 @@ function Nav() {
           <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Manufacturer</a>
               <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="manufacturers" role="button">Manufacturer List</NavLink></li>
-                <li><NavLink className="dropdown-item" to="manufacturers/create/" role="button">Add a Manufacturer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manufacturers" role="button">Manufacturer List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/manufacturers/new/" role="button">Add a Manufacturer</NavLink></li>
               </ul>
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Vehicle</a>
               <ul className="dropdown-menu">
-                <li><NavLink className="dropdown-item" to="vehicles" role="button">Vehicle Models List</NavLink></li>
-                <li><NavLink className="dropdown-item" to="vehicles/create" role="button">Add a Vehicle Model</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/vehiclemodels" role="button">Vehicle Models List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/vehiclemodels/new" role="button">Add a Vehicle Model</NavLink></li>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -29,6 +29,20 @@ function Nav() {
               <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/automobiles" role="button">Automobile List</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/automobiles/new" role="button">Add Automobile</NavLink></li>
+              </ul>
+              </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Appointment</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/appointments" role="button">Appointment List</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/appointments/new" role="button">Add Appointment</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/appointments/history" role="button">Search Appointments</NavLink></li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Technician</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/technicians/new" role="button">Add Technician</NavLink></li>
               </ul>
             </li>
           </ul>

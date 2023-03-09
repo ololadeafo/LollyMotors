@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 
 function ManufacturerList() {
   const [manufacturers, setManufacturers] = useState([]);
+  
+  const getData =async() => {
+    const response = await fetch("http://localhost:8100/api/manufacturers/");
+    if (response.ok) {
+        const data = await response.json()
+        setManufacturers(data.manufacturers)
+    }
+  }
 
   useEffect(() => {
-    const fetchManufacturerData = async () => {
-      const response = await fetch("http://localhost:8100/api/manufacturers/");
-      const data = await response.json();
-      setManufacturers(data.manufacturers);
-    };
-    fetchManufacturerData();
-  }, []);
+    getData()
+  }, [])
 
   return (
     <table className="table table-striped">

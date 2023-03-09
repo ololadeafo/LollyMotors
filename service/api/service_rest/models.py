@@ -1,10 +1,12 @@
 from django.db import models
-from django.urls import reverse
 
 
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True, null=True)
-    vin = models.CharField(max_length=300)
+    vin = models.CharField(max_length=17)
+
+    def __str__(self):
+        return self.vin
 
 class Technician(models.Model):
     name = models.CharField(max_length=300)
@@ -13,8 +15,6 @@ class Technician(models.Model):
     def __str__(self):
         return self.name
     
-    def get_api_url(self):
-        return reverse("api_list_technicians", kwargs={"pk": self.pk})
 
 class Appointment(models.Model):
     customer_name = models.CharField(max_length=200)
@@ -22,11 +22,14 @@ class Appointment(models.Model):
     vin = models.CharField(max_length=300)
     date = models.DateField(null=True)
     time = models.TimeField(null=True)
-    technician = models.ForeignKey("Technician", related_name="appointments", on_delete=models.PROTECT)
     reason = models.TextField()
     finished = models.BooleanField(default=False)
+    technician = models.ForeignKey(
+        Technician,
+        related_name="appointment",
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self):
         return f"{self.customer_name} {self.vin}"
-
 

@@ -3,38 +3,8 @@ from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
 
-from common.json import ModelEncoder
+from .encoders import TechnicianListEncoder, AppointmentListEncoder, AppointmentDetailEncoder
 from .models import AutomobileVO, Technician, Appointment
-
-
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = ["import_href", "vin"]
-
-class TechnicianListEncoder(ModelEncoder):
-    model = Technician
-    properties = ["id", "name", "employee_number"]
-
-class AppointmentListEncoder(ModelEncoder):
-    model = Appointment
-    properties = ["id","customer_name", "vip","vin", "technician", "reason", "date", "time", "finished"]
-    encoders = {
-        "technician": TechnicianListEncoder()
-    }
-
-    def get_extra_data(self,o):
-        return {"technician": o.technician.name}
-
-
-class AppointmentDetailEncoder(ModelEncoder):
-    model = Appointment
-    properties = ["id", "customer_name", "vip", "vin", "technician", "reason", "date", "finished"]
-    encoders = {
-        "technician": TechnicianListEncoder()
-    }
-
-    def get_extra_data(self,o):
-        return {"technician": o.technician.name}
 
 
 @require_http_methods(["GET", "POST"])
@@ -59,9 +29,10 @@ def api_list_technicians(request):
             )
         except:
             return JsonResponse(
-                {"message": "Select a different technician"}
+                {"message": "Technician cannot be created"}
             )
 
+    
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
@@ -93,7 +64,7 @@ def api_list_appointments(request):
         )
 
 @require_http_methods(["GET", "PUT", "DELETE"])
-def api_detail_appointment(request, pk):
+def api_show_appointment(request, pk):
     if request.method == "GET":
         appointment = Appointment.objects.get(id=pk)
         return JsonResponse(
@@ -110,16 +81,28 @@ def api_detail_appointment(request, pk):
                 {"message": "Technician does not exist"}
             )
         Appointment.objects.filter(id=pk).update(**content)
-
         appointment = Appointment.objects.get(id=pk)
 
         return JsonResponse(
-            appointment, encoder=AppointmentDetailEncoder, safe=False
+            appointment, 
+            encoder=AppointmentDetailEncoder, 
+            safe=False,
         )
     else:
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse(
             {"deleted": count > 0}
         )
+
+@require_http_methods(["GET"])
+def api_service_history(request):
+    if request.method == "GET":
+        appointments = Appointment.objects.filter(finished=True)
+        return JsonResponse(
+            {"appointments": appointments},
+            encoder=AppointmentListEncoder,
+            safe=False,
+        )
+
 
 
