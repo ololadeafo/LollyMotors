@@ -5,13 +5,13 @@ import ManufacturerForm from './ManufacturerForm';
 import ManufacturerList from './ManufacturerList';
 import VehicleForm from './VehicleForm';
 import VehicleList from './VehicleList';
-import AutoMobileForm from './automobileForm';
-import AutomobileList from './automobileList';
-import SalesPersonForm from './salespersonForm';
-import CustomerForm from './customerForm';
-import SaleRecordForm from './salerecordForm';
-import SaleRecordList from './salerecordList';
-import SalesPersonHistory from './salespersonHistory';
+import AutoMobileForm from './automobile/automobileForm';
+import AutomobileList from './automobile/automobileList';
+import SalesPersonForm from './salesperson/salespersonForm';
+import CustomerForm from './customer/customerForm';
+import SaleRecordForm from './Sale Record/salerecordForm';
+import SaleRecordList from './Sale Record/salerecordList';
+import SalesPersonHistory from './salesperson/salespersonHistory';
 
 function App(props) {
   return (

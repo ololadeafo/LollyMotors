@@ -51,7 +51,6 @@ def api_list_technicians(request):
         content = json.loads(request.body)
         try:
             technician = Technician.objects.create(**content)
-            print(content)
             return JsonResponse(
                 technician,
                 encoder=TechnicianListEncoder,
@@ -121,5 +120,3 @@ def api_detail_appointment(request, pk):
         return JsonResponse(
             {"deleted": count > 0}
         )
-
-

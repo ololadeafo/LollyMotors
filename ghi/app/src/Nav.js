@@ -31,6 +31,26 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/automobiles/new" role="button">Add Automobile</NavLink></li>
               </ul>
             </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sales Person</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/salesperson/new" role="button">Add Salesperson</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesperson/history" role="button">Sales Person History</NavLink></li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Sale Records</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/salerecord/new" role="button">Add Sale Record</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salerecord/" role="button">Sale Records List</NavLink></li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Customers</a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/customer/new" role="button">Add Customer</NavLink></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

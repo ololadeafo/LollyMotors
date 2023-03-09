@@ -10,6 +10,7 @@ function SaleRecordForm() {
         salesperson: '',
         price: '',
     })
+    const [errorMessage, setErrormessage] = useState('');
 
     const getcustomerData = async() => {
         const url = 'http://localhost:8090/sales/customer/'
@@ -68,6 +69,9 @@ function SaleRecordForm() {
                 salesperson: '',
                 price: '',
             });
+            setErrormessage('');
+        } else {
+            setErrormessage('Error adding sale record: car already sold')
         }
     }
 
@@ -84,6 +88,9 @@ function SaleRecordForm() {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Add a new Sale Record</h1>
+                    {errorMessage && (
+                        <div className="alert alert-danger">{errorMessage}</div>
+                    )}
                     <form onSubmit={handleSubmit} id="create-salerecord-form">
                         <div className="mb-3">
                             <select onChange={handleFormChange} value={formData.customer} required name="customer" id="customer" className="form-select">

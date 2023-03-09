@@ -55,6 +55,11 @@ def api_salerecord_list(request):
         try:
             vin = content["automobile"]
             automobile = AutomobileVO.objects.get(vin=vin)
+            if automobile.is_sold == True:
+                return JsonResponse(
+                    {"message": "This autombile is already sold"},
+                    status=400
+                )
             content["automobile"] = automobile
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
@@ -81,6 +86,8 @@ def api_salerecord_list(request):
             )
         sale = SaleRecord.objects.create(**content)
 
+        automobile.is_sold = True
+        automobile.save()
 
         return JsonResponse(
             sale,
