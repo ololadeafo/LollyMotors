@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function VehicleModelForm() {
   const [name, setName] = useState("");
-  const [picture, setPicture] = useState("");
+  const [picture_url, setPicture] = useState("");
   const [manufacturer_id, setManufacturer] = useState("");
 
 
@@ -39,7 +39,7 @@ function VehicleModelForm() {
     event.preventDefault();
     const data = {
       name,
-      picture,
+      picture_url,
       manufacturer_id,
     };
 
@@ -73,7 +73,7 @@ function VehicleModelForm() {
               <label htmlFor="name">Name</label>
             </div>
             <div className="form-floating mb-3">
-              <input value={picture} onChange={handlePictureChange} placeholder="Picture" required name="picture_url" id="picture_url" className="form-control"/>
+              <input value={picture_url} onChange={handlePictureChange} placeholder="Picture" required name="picture_url" id="picture_url" className="form-control"/>
               <label htmlFor="vin">Picture URL</label>
             </div>
             <div className="mb-3">
