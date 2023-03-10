@@ -164,7 +164,7 @@ def api_vehicle_models(request):
             encoder=VehicleModelEncoder
         )
     else:
-        try:
+        # try:
             content = json.loads(request.body)
             manufacturer_id = content["manufacturer_id"]
             manufacturer = Manufacturer.objects.get(id=manufacturer_id)
@@ -175,12 +175,12 @@ def api_vehicle_models(request):
                 encoder=VehicleModelEncoder,
                 safe=False,
             )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the vehicle model"}
-            )
-            response.status_code = 400
-            return response
+        # except:
+        #     response = JsonResponse(
+        #         {"message": "Could not create the vehicle model"}
+        #     )
+        #     response.status_code = 400
+        #     return response
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
