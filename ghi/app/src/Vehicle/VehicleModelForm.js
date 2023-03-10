@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function VehicleModelForm() {
   const [name, setName] = useState("");
-  const [picture_url_url, setPicture] = useState("");
+  const [picture_url, setPicture] = useState("");
   const [manufacturer_id, setManufacturer] = useState("");
 
 
