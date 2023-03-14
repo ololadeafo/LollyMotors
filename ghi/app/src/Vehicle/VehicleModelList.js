@@ -35,7 +35,7 @@ function VehicleModelList() {
                     <td>{vehiclemodel.manufacturer.name}</td>
                     <td>{vehiclemodel.name}</td>
                     <td>
-                      <img src={vehiclemodel.picture_url} alt="vehicle"/>
+                      <img src={vehiclemodel.picture_url} width='320px' height='172px' alt="vehicle"/>
                     </td>
                   </tr>
 
