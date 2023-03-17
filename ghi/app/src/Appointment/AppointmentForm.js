@@ -10,6 +10,11 @@ function AppointmentForm() {
     technician: '',
     reason: '',
   })
+  const [successfulSubmit, setSuccessfulSubmit] = useState(false);
+
+  let alertClasses = "alert alert-success d-none mb-3";
+  let alertContainerClasses = "d-none";
+
 
   const fetchData = async () => {
     const url = "http://localhost:8080/api/technicians";
@@ -45,7 +50,8 @@ function AppointmentForm() {
         time: '',
         technician: '',
         reason: '',
-      })
+      });
+      setSuccessfulSubmit(true);
     }
   };
 
@@ -54,6 +60,11 @@ function AppointmentForm() {
       ...formData,
       [e.target.name]: e.target.value
     })
+  };
+
+  if (successfulSubmit) {
+    alertClasses = "alert alert-success mb-3 padding: 5px;";
+    alertContainerClasses = "";
   }
 
   return (
@@ -96,10 +107,13 @@ function AppointmentForm() {
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
+          <div className={alertContainerClasses}>
+            <div className={alertClasses} id='success-message'>Appointment created successfully</div>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default AppointmentForm;
